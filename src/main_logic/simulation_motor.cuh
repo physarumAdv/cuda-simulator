@@ -192,7 +192,13 @@ __device__ inline void run_iteration_diffuse_trail(SimulationMap *const simulati
     MapNode *self;
     RUN_ITERATION_SET_SELF(self, node_index)
 
-    diffuse_trail(self);
+    auto left = self->get_left(), top = self->get_top(), right = self->get_right(), bottom = self->get_bottom();
+
+    double sum = top->get_left()->trail + top->trail + top->get_right()->trail +
+                 left->trail + self->trail + right->trail +
+                 bottom->get_left()->trail + bottom->trail + bottom->get_right()->trail;
+
+    self->temp_trail = (1 - jc::diffdamp) * (sum / 9.0);
 }
 
 /**

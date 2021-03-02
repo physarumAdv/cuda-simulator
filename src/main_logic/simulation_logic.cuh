@@ -35,19 +35,6 @@
 [[nodiscard]] __device__ bool delete_particle(MapNode *node);
 
 /**
- * Diffuses trail in the given node
- *
- * The diffusion algorithm (developed by Jeff Jones) is pretty simple at first sight. We calculate an average
- * `trail` value in a 3x3 node window around the given one and multiply it by `(1 - jones_constants::diffdamp)`.
- * The new `temp_trail` value in the given node is the value just calculated. This is a natural way to implement the
- * smell spread: on each iteration smell moves more far from the source, but becomes less strong, because
- * `(1 - jones_constants::diffdamp)` < 1
- *
- * @param node Pointer to the node to diffuse trail at
- */
-__host__ __device__ void diffuse_trail(MapNode *node);
-
-/**
  * Returns number of particles in a node window around the given node
  *
  * Let's assume a node of the model is a plane point with coordinates (X, Y). Then it's neighbors (even if they are not

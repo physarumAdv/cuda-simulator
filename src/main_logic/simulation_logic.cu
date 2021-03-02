@@ -37,18 +37,6 @@ namespace jc = jones_constants;
 }
 
 
-__host__ __device__ void diffuse_trail(MapNode *node)
-{
-    auto left = node->get_left(), top = node->get_top(), right = node->get_right(), bottom = node->get_bottom();
-
-    double sum = top->get_left()->trail + top->trail + top->get_right()->trail +
-                 left->trail + node->trail + right->trail +
-                 bottom->get_left()->trail + bottom->trail + bottom->get_right()->trail;
-
-    node->temp_trail = (1 - jc::diffdamp) * (sum / 9.0);
-}
-
-
 __host__ __device__ int count_particles_in_node_window(MapNode *node, int window_size)
 {
     for(int i = 0; i < window_size / 2; ++i)
