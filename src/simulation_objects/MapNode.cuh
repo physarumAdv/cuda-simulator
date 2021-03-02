@@ -294,7 +294,7 @@ private:
     bool contains_food;
 
 
-    /// Pointer to a particle attached to the node if it exists or TO WHATEVER otherwise
+    /// Pointer to a particle attached to the node if it exists or `nullptr` otherwise
     Particle *particle;
 };
 

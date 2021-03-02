@@ -240,7 +240,8 @@ __device__ inline void run_iteration_process_particles(SimulationMap *const simu
  * Performs a part of an iteration <b>for one node</b> (not self-sufficient, see note below
  *
  * Applies trail changes (sets `trail`s to `temp_trail`s), releases captured particles and increases `iteration_number`
- * by 1
+ * by 1 if `node_index == 0` (wcich means `iteration_number` will be increased by `1` if you call this function for all
+ * the nodes
  *
  * @param simulation_map Simulation map to run iteration on
  * @param iteration_number Serial number of current iteration
